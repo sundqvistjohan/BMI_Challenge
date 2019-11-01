@@ -8,9 +8,19 @@ describe("Person", () => {
 
     it("should have a weight of 90", () => {
         expect(person.weight).to.equal(90);
-    })
+    });
 
     it("should have a height of 186", () => {
         expect(person.height).to.equal(186);
-    })
+    });
+
+    it("should calculate BMI value", () => {
+        person.calculate_bmi();
+        expect(person.bmiValue).to.equal(26.01);
+    });
+
+    it("should have a BMI message", () => {
+        person.calculate_bmi();
+        expect(person.bmiMessage).to.equal('Overweight');
+    });
 });
