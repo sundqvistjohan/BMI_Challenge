@@ -9,13 +9,13 @@
 <body>
     <form id="calculate">
         <div id="metric-inputs">
-            <input type="text" id="weight-in-kgs" placeholder="Weight">
-            <input type="text" id="height-in-cm" placeholder="Height">
+            <input type="text" id="weight" placeholder="Weight (kg/lbs)">
+            <input type="text" id="height" placeholder="Height (cm/inch)">
         </div>
-        <div id="imperial-inputs">
+        <!-- <div id="imperial-inputs">
             <input type="text" id="weight-in-lbs" placeholder="Weight">
             <input type="text" id="height-in-in" placeholder="Height">
-        </div>
+        </div> -->
         <div class="form-group row">
                 <div class="col-auto">
                   <select class="form-control" id="my_select">
@@ -53,10 +53,10 @@
         const calculateBMI = () => {
             let method = global.methodSelector.options[global.methodSelector.selectedIndex].value;
             return new Promise(resolve => {
-                let weightFormat = method === 'metric' ? 'weight-in-kgs' : 'weight-in-lbs';
-                let heightFormat = method === 'metric' ? 'height-in-cm' : 'height-in-in';
-                let w = parseFloat(document.getElementById(weightFormat).value);
-                let h = parseFloat(document.getElementById(heightFormat).value);
+                //let weightFormat = method === 'imperial' ? 'weight-in-kgs' : 'weight-in-lbs';
+                //let heightFormat = method === 'imperial' ? 'height-in-cm' : 'height-in-in';
+                let w = parseFloat(document.getElementById('weight').value);
+                let h = parseFloat(document.getElementById('height').value);
                 let person = new Person({
                     weight: w,
                     height: h,
