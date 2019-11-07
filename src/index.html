@@ -5,30 +5,36 @@
     <title>Document</title>
     <script src="js/person.js"></script>
     <script src="js/bmi_calculator.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h2>BMI Calculator</h2>
     <form id="calculate">
-        <div id="metric-inputs">
-            <input type="text" id="weight" placeholder="Weight (kg/lbs)">
-            <input type="text" id="height" placeholder="Height (cm/inch)">
+        <div id="inputs">
+            <h4>Inputs</h4>
+            Weight<br>
+            <input type="text" id="weight" placeholder="kg / lbs"><br>
+            Height<br>
+            <input type="text" id="height" placeholder="cm / inch"><br>
+            Units<br>
         </div>
-        <!-- <div id="imperial-inputs">
-            <input type="text" id="weight-in-lbs" placeholder="Weight">
-            <input type="text" id="height-in-in" placeholder="Height">
-        </div> -->
         <div class="form-group row">
-                <div class="col-auto">
-                  <select class="form-control" id="my_select">
-                    <option value="metric">Metric System</option>
-                    <option value="imperial">Imperial System</option>
-                  </select>
-                </div>
+            <div class="col-auto">
+                <select class="form-control" id="my_select">
+                <option value="metric">Metric</option>
+                <option value="imperial">Imperial</option>
+            </select>
             </div>
+        </div>
         <button type="submit" value="Calculate">Calculate</button>
+        </div>
     </form>
-    <div>
-        <span id="display_value"></span>
-        <span id="display_message"></span>
+    <div id="result">
+        <h4>Results</h4>
+        BMI<br>
+        <input type="text" id="display_value" placeholder="-" disabled></span><br>
+        BMI Category<br>
+        <input type="text" id="display_message" placeholder="-" disabled></span>
     </div>
 
     <script type="text/javascript">
@@ -44,8 +50,8 @@
                 event.preventDefault();
                 calculateBMI()
                     .then(person => {
-                        global.displayValueElement.innerHTML = `Your BMI is ${person.bmiValue}`;
-                        global.displayMessageElement.innerHTML = `and you are ${person.bmiMessage}`;
+                        global.displayValueElement.value = person.bmiValue;
+                        global.displayMessageElement.value = person.bmiMessage;
                     })
             })
         });
@@ -53,8 +59,6 @@
         const calculateBMI = () => {
             let method = global.methodSelector.options[global.methodSelector.selectedIndex].value;
             return new Promise(resolve => {
-                //let weightFormat = method === 'imperial' ? 'weight-in-kgs' : 'weight-in-lbs';
-                //let heightFormat = method === 'imperial' ? 'height-in-cm' : 'height-in-in';
                 let w = parseFloat(document.getElementById('weight').value);
                 let h = parseFloat(document.getElementById('height').value);
                 let person = new Person({

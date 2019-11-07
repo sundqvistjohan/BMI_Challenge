@@ -18,8 +18,8 @@ describe('User can calculate BMI using metric system', () => {
 
     it('by inputing his weight and height', async () => {
 
-        await browser.fillIn("input[id='weight-in-kgs']", { with: "95" })
-        await browser.fillIn("input[id='height-in-cm']", { with: "185" })
+        await browser.fillIn("input[id='weight']", { with: "95" })
+        await browser.fillIn("input[id='height']", { with: "185" })
 
         await browser.clickOnButton("button")
         let content = await browser.getContent("span[id='display_value']")
@@ -43,8 +43,8 @@ describe('User can calculate BMI using imperial system', () => {
 
     it('by inputing his weight and height', async () => {
         await browser.selectOption("select[id='my_select']", {option: 'imperial' })
-        await browser.fillIn("input[id='weight-in-lbs']", { with: "170" })
-        await browser.fillIn("input[id='height-in-in']", { with: "70" })
+        await browser.fillIn("input[id='weight']", { with: "170" })
+        await browser.fillIn("input[id='height']", { with: "70" })
         await browser.clickOnButton("button")
         let content = await browser.getContent("span[id='display_value']")
 
